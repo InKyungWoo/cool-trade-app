@@ -24,6 +24,9 @@ const Chat = () => {
                 : lastMessage.audio
                 ? '음성 메시지를 보냈습니다.'
                 : '');
+        const unreadCount = item.messages.filter(
+            msg => msg.sender === 'other' && !msg.isRead,
+        ).length;
 
         return (
             <TouchableOpacity
@@ -36,7 +39,15 @@ const Chat = () => {
                         {messageText}
                     </Text>
                 </View>
-                <Text style={{ fontSize: 12, color: '#999' }}>{lastMessage.time}</Text>
+
+                <View style={{ alignItems: 'flex-end' }}>
+                    <Text style={{ fontSize: 12, color: '#999' }}>{lastMessage.time}</Text>
+                    {unreadCount > 0 && (
+                        <View style={styles.unreadCountWrapper}>
+                            <Text style={{ fontSize: 12, color: '#FFF' }}>{unreadCount}</Text>
+                        </View>
+                    )}
+                </View>
             </TouchableOpacity>
         );
     };
@@ -71,6 +82,14 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 10,
+    },
+    unreadCountWrapper: {
+        alignItems: 'center',
+        backgroundColor: '#1D3FC6',
+        borderRadius: 100,
+        marginTop: 10,
+        padding: 5,
+        width: 25,
     },
 });
 

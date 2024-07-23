@@ -2,7 +2,7 @@ export const dummyChats = [
     {
         id: '1',
         username: '소피아',
-        profile: 'https://avatar.iran.liara.run/public/43',
+        profile: 'https://avatar.iran.liara.run/public/31',
         messages: [
             {
                 id: '1',
@@ -69,7 +69,7 @@ export const dummyChats = [
             },
             {
                 id: '2',
-                text: '네, 아직 있습니다. 어떤 점이 궁금하신가요?',
+                text: '네, 아직 있습니다!',
                 sender: 'me',
                 time: '12:27',
                 isRead: true,
@@ -83,7 +83,7 @@ export const dummyChats = [
             },
             {
                 id: '4',
-                image: 'https://picsum.photos/400/300',
+                image: 'https://picsum.photos/id/76/200/300',
                 sender: 'me',
                 time: '14:32',
                 isRead: true,
@@ -114,14 +114,14 @@ export const dummyChats = [
                 text: '네, 알겠습니다. 주말에 직접 보고 결정해도 될까요? 그리고 풀박 여부랑 배터리 싸이클은 어떻게 되나요?',
                 sender: 'other',
                 time: '13:20',
-                isRead: true,
+                isRead: false,
             },
         ],
     },
     {
         id: '4',
         username: '쵸로키',
-        profile: 'https://avatar.iran.liara.run/public/94',
+        profile: 'https://avatar.iran.liara.run/public/58',
         messages: [
             {
                 id: '1',
@@ -188,17 +188,24 @@ export const dummyChats = [
             },
             {
                 id: '5',
-                audio: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3',
-                sender: 'me',
+                text: '혹시 전원 킬 때 이런 소리 나나요?',
+                sender: 'other',
                 time: '어제',
-                isRead: true,
+                isRead: false,
+            },
+            {
+                id: '6',
+                audio: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3',
+                sender: 'other',
+                time: '어제',
+                isRead: false,
             },
         ],
     },
     {
         id: '6',
         username: '캘리칼리 데이비슨',
-        profile: 'https://avatar.iran.liara.run/public/39',
+        profile: 'https://avatar.iran.liara.run/public/38',
         messages: [
             {
                 id: '1',
