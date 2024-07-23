@@ -7,6 +7,7 @@ import Splash from './pages/Splash';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Chat from './pages/Chat';
+import ChatDetail from './pages/ChatDetail';
 import Profile from './pages/Profile';
 
 const Stack = createStackNavigator();
@@ -32,6 +33,7 @@ const Router = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Splash" component={Splash} />
             <Stack.Screen name="MainTab" component={MainTab} />
+            <Stack.Screen name="ChatDetail" component={ChatDetail} />
         </Stack.Navigator>
     );
 };

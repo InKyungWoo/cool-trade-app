@@ -6,7 +6,7 @@ export const dummyChats = [
         messages: [
             {
                 id: '1',
-                text: '안녕하세요, 올리신 아이패드 아직 판매 중인가요?',
+                text: '안녕하세요, 올리신 노트북 아직 판매 중인가요?',
                 sender: 'other',
                 time: '14:30',
                 isRead: true,
@@ -27,7 +27,7 @@ export const dummyChats = [
             },
             {
                 id: '4',
-                image: 'https://picsum.photos/400/300',
+                image: 'https://picsum.photos/id/9/200/300',
                 sender: 'me',
                 time: '14:32',
                 isRead: true,
@@ -62,7 +62,7 @@ export const dummyChats = [
         messages: [
             {
                 id: '1',
-                text: '안녕하세요, 중고 자전거 아직 있나요?',
+                text: '안녕하세요, 자전거 아직 있나요?',
                 sender: 'other',
                 time: '12:25',
                 isRead: true,
@@ -76,7 +76,7 @@ export const dummyChats = [
             },
             {
                 id: '3',
-                image: '상태 좀 볼 수 있을까요?',
+                text: '상태 좀 볼 수 있을까요?',
                 sender: 'other',
                 time: '14:32',
                 isRead: true,
@@ -97,7 +97,7 @@ export const dummyChats = [
         messages: [
             {
                 id: '1',
-                text: '삼성 노트북 배터리 수명은 어느 정도인가요?',
+                text: '노트북 배터리 수명은 어느 정도인가요?',
                 sender: 'other',
                 time: '09:10',
                 isRead: true,
@@ -113,7 +113,7 @@ export const dummyChats = [
                 id: '3',
                 text: '네, 알겠습니다. 주말에 직접 보고 결정해도 될까요? 그리고 풀박 여부랑 배터리 싸이클은 어떻게 되나요?',
                 sender: 'other',
-                time: '09:20',
+                time: '13:20',
                 isRead: true,
             },
         ],
@@ -190,8 +190,22 @@ export const dummyChats = [
                 id: '5',
                 audio: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3',
                 sender: 'me',
-                time: '10:42',
+                time: '어제',
                 isRead: true,
+            },
+        ],
+    },
+    {
+        id: '6',
+        username: '캘리칼리 데이비슨',
+        profile: 'https://avatar.iran.liara.run/public/39',
+        messages: [
+            {
+                id: '1',
+                text: '안녕하세요, 사이드테이블 아직 있나요?',
+                sender: 'me',
+                time: '어제',
+                isRead: false,
             },
         ],
     },

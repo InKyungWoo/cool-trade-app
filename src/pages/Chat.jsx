@@ -8,11 +8,13 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 import BasicHeader from '../components/BasicHeader';
 import { dummyChats } from '../data/dummyChats';
 
 const Chat = () => {
+    const navigation = useNavigation();
+
     const renderItem = ({ item }) => {
         const lastMessage = item.messages[item.messages.length - 1];
         const messageText =
@@ -24,7 +26,9 @@ const Chat = () => {
                 : '');
 
         return (
-            <TouchableOpacity style={styles.chatItem}>
+            <TouchableOpacity
+                style={styles.chatItem}
+                onPress={() => navigation.navigate('ChatDetail', { userId: item.id })}>
                 <Image source={{ uri: item.profile }} style={styles.profile} />
                 <View style={{ flex: 1 }}>
                     <Text style={styles.userName}>{item.username}</Text>
