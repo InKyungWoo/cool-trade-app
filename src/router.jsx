@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import CustomBottomTab from './components/CustomBottomTab';
 
 import Splash from './pages/Splash';
 import Home from './pages/Home';
@@ -13,7 +14,11 @@ const Tab = createBottomTabNavigator();
 
 const MainTab = () => {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
+            screenOptions={{ headerShown: false }}
+            tabBar={props => {
+                return <CustomBottomTab {...props} />;
+            }}>
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="Search" component={Search} />
             <Tab.Screen name="Chat" component={Chat} />
