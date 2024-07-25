@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import LogoHeader from '../components/LogoHeader';
 import AppleMap from '../components/AppleMap';
 import { dummyItems } from '../data/dummyItems';
+import { calculateDistance } from '../utils/distanceCaculator';
 
 const { width } = Dimensions.get('window');
 
@@ -58,20 +59,6 @@ const Home = () => {
         const sorted = itemsWidthDistance.sort((a, b) => a.distance - b.distance);
         setSortedItems(sorted);
         setFocusedItem(sorted[0].id);
-    };
-
-    const calculateDistance = (lat1, lon1, lat2, lon2) => {
-        const R = 6371; // Radius of the Earth in km
-        const dLat = (lat2 - lat1) * (Math.PI / 180);
-        const dLon = (lon2 - lon1) * (Math.PI / 180);
-        const a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(lat1 * (Math.PI / 180)) *
-                Math.cos(lat2 * (Math.PI / 180)) *
-                Math.sin(dLon / 2) *
-                Math.sin(dLon / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c;
     };
 
     const handleScroll = e => {
