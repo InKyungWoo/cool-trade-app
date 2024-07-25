@@ -12,10 +12,12 @@ import {
 } from 'react-native';
 import { dummyItems } from '../data/dummyItems';
 import BasicHeader from '../components/BasicHeader';
+import { useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
 const ItemDetailScreen = ({ route }) => {
+    const navigation = useNavigation();
     const { itemId } = route.params;
     const item = dummyItems.find(item => item.id === itemId);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -33,6 +35,14 @@ const ItemDetailScreen = ({ route }) => {
         const index = event.nativeEvent.contentOffset.x / slideSize;
         const roundIndex = Math.round(index);
         setActiveIndex(roundIndex);
+    };
+
+    const handleChatPress = () => {
+        navigation.navigate('ChatDetail', {
+            sellerId: item.id, // 판매자 ID로 아이템 ID를 사용
+            sellerNickname: item.nickname,
+            itemTitle: item.title,
+        });
     };
 
     return (
@@ -82,7 +92,7 @@ const ItemDetailScreen = ({ route }) => {
                     <Text style={{ fontSize: 16, fontWeight: 'bold' }}>가격 : </Text>
                     <Text style={styles.price}>{item.price.toLocaleString()}원</Text>
                 </View>
-                <TouchableOpacity style={styles.chatButton}>
+                <TouchableOpacity style={styles.chatButton} onPress={handleChatPress}>
                     <Text style={styles.chatButtonText}>채팅하기</Text>
                 </TouchableOpacity>
             </View>

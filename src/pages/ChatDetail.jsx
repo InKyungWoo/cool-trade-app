@@ -31,8 +31,8 @@ const voiceButton = require('../assets/icons/chatmodal/voiceButton.png');
 const { width } = Dimensions.get('window');
 
 const ChatDetail = ({ route, navigation }) => {
-    const { userId } = route.params;
-    const chatData = dummyChats.find(chat => chat.id === userId);
+    const { userId, sellerId, sellerNickname, itemTitle } = route.params;
+    // const chatData = dummyChats.find(chat => chat.id === userId);
     const [messages, setMessages] = useState([]);
     const [userName, setUserName] = useState('');
 
@@ -43,15 +43,30 @@ const ChatDetail = ({ route, navigation }) => {
     const audioRecorderPlayer = useRef(new AudioRecorderPlayer()).current;
 
     useEffect(() => {
-        if (chatData) {
-            setMessages(chatData.messages);
-            setUserName(chatData.username);
-            navigation.setOptions({ title: chatData.username });
-        } else {
-            console.error('data가 없습니다 (userId): ', userId);
-            navigation.setOptions({ title: 'Chat' });
+        if (userId) {
+            // 기존 채팅
+            const chatData = dummyChats.find(chat => chat.id === userId);
+            if (chatData) {
+                setMessages(chatData.messages);
+                setUserName(chatData.username);
+                navigation.setOptions({ title: chatData.username });
+            } else {
+                console.error('채팅 데이터를 찾을 수 없습니다 (userId): ', userId);
+            }
+        } else if (sellerId) {
+            // 새로운 채팅
+            const initialMessage = {
+                id: Date.now().toString(),
+                text: `"${itemTitle}" 상품에 대한 채팅방이 열렸습니다.`,
+                sender: 'system',
+                time: dayjs().format('HH:mm'),
+                isRead: true,
+            };
+            setMessages([initialMessage]);
+            setUserName(sellerNickname);
+            navigation.setOptions({ title: sellerNickname });
         }
-    }, [chatData, userId, navigation]);
+    }, [userId, sellerId, sellerNickname, itemTitle, navigation]);
 
     useFocusEffect(
         React.useCallback(() => {
@@ -138,7 +153,13 @@ const ChatDetail = ({ route, navigation }) => {
         const prevMessage = index < messages.length - 1 ? messages[index + 1] : null;
         const nextMessage = index > 0 ? messages[index - 1] : null;
 
-        if (item.sender === 'me') {
+        if (item.sender === 'system') {
+            return (
+                <View style={styles.systemMessageContainer}>
+                    <Text style={styles.systemMessageText}>{item.text}</Text>
+                </View>
+            );
+        } else if (item.sender === 'me') {
             return (
                 <RightBubble
                     message={item}
@@ -293,6 +314,17 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: '400',
         color: '#828282',
+    },
+    systemMessageContainer: {
+        alignItems: 'center',
+        marginVertical: 10,
+    },
+    systemMessageText: {
+        backgroundColor: '#e0e0e0',
+        color: '#666',
+        padding: 5,
+        borderRadius: 10,
+        fontSize: 12,
     },
 });
 
