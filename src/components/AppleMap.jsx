@@ -11,7 +11,7 @@ const zoominIcon = require('../assets/icons/zoomIn.png');
 const zoomOutIcon = require('../assets/icons/zoomOut.png');
 const customPin = require('../assets/icons/customPin.png');
 
-const AppleMap = () => {
+const AppleMap = ({ sortedItems, onMarkerPress }) => {
     const [region, setRegion] = useState({
         latitude: 37.363446,
         longitude: 127.12793,
@@ -85,7 +85,7 @@ const AppleMap = () => {
                 showsMyLocationButton={false}
                 zoomEnabled={true}
                 zoomControlEnabled={true}>
-                {dummyItems.map(item => (
+                {sortedItems.map(item => (
                     <Marker
                         key={item.id}
                         coordinate={{
@@ -94,11 +94,10 @@ const AppleMap = () => {
                         }}
                         title={item.title}
                         description={item.content}
-                        // pinColor="#5b86dc"
-                    >
+                        onPress={() => onMarkerPress(item.id)}>
                         <Image
                             source={customPin}
-                            style={{ width: 40, height: 40 }} // 크기를 원하는 대로 조정하세요
+                            style={{ width: 40, height: 40 }}
                             resizeMode="contain"
                         />
                     </Marker>

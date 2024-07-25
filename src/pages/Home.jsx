@@ -14,10 +14,12 @@ import LogoHeader from '../components/LogoHeader';
 import AppleMap from '../components/AppleMap';
 import { dummyItems } from '../data/dummyItems';
 import { calculateDistance } from '../utils/distanceCaculator';
+import { useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
 const Home = () => {
+    const navigation = useNavigation();
     const [focusedItem, setFocusedItem] = useState(null);
     const [sortedItems, setSortedItems] = useState([]);
 
@@ -65,11 +67,15 @@ const Home = () => {
         }
     };
 
+    const navigateToItemDetail = itemId => {
+        navigation.navigate('ItemDetail', { itemId });
+    };
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#FFF' }}>
             <LogoHeader />
             <View style={{ flex: 1 }}>
-                <AppleMap />
+                <AppleMap sortedItems={sortedItems} onMarkerPress={navigateToItemDetail} />
                 <View style={styles.itemContainer}>
                     <ScrollView
                         horizontal
@@ -81,7 +87,8 @@ const Home = () => {
                                 style={[
                                     styles.itemCard,
                                     focusedItem === item.id && styles.focusedCard,
-                                ]}>
+                                ]}
+                                onPress={() => navigateToItemDetail(item.id)}>
                                 <View
                                     style={{
                                         flexDirection: 'row',

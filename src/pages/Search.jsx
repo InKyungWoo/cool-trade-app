@@ -8,6 +8,7 @@ import {
     SafeAreaView,
     Image,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { dummyItems } from '../data/dummyItems';
 import { siObj, siGuList } from '../data/regionData';
 import DropdownModal from '../components/DropdownModal';
@@ -16,6 +17,8 @@ import BasicHeader from '../components/BasicHeader';
 const noResultImg = require('../assets/images/sadLogo.png');
 
 const Search = () => {
+    const navigation = useNavigation();
+
     const [selectedSi, setSelectedSi] = useState('전체');
     const [selectedGu, setSelectedGu] = useState('전체');
     const [filteredItems, setFilteredItems] = useState([]);
@@ -52,7 +55,9 @@ const Search = () => {
     };
 
     const renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.itemCard}>
+        <TouchableOpacity
+            style={styles.itemCard}
+            onPress={() => navigation.navigate('ItemDetail', { itemId: item.id })}>
             <View style={{ flex: 1, marginRight: 15 }}>
                 <Text style={styles.itemTitle}>{item.title}</Text>
                 <Text style={styles.itemContent} numberOfLines={1}>

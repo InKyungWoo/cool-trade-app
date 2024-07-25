@@ -9,6 +9,7 @@ import Search from './pages/Search';
 import Chat from './pages/Chat';
 import ChatDetail from './pages/ChatDetail';
 import Profile from './pages/Profile';
+import ItemDetail from './pages/ItemDetail';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,6 +35,7 @@ const Router = () => {
             <Stack.Screen name="Splash" component={Splash} />
             <Stack.Screen name="MainTab" component={MainTab} />
             <Stack.Screen name="ChatDetail" component={ChatDetail} />
+            <Stack.Screen name="ItemDetail" component={ItemDetail} />
         </Stack.Navigator>
     );
 };
