@@ -5,8 +5,13 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-platform :ios, '13.4'
+platform :ios, '15.2'
 prepare_react_native_project!
+
+rn_maps_path = '../node_modules/react-native-maps'
+    pod 'react-native-google-maps', :path => rn_maps_path
+    pod 'GoogleMaps'
+    pod 'Google-Maps-iOS-Utils'
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -15,11 +20,12 @@ if linkage != nil
 end
 
 target 'cool_trade' do
-  config = use_native_modules!
-
   # React Native Maps dependencies
-  rn_maps_path = '../node_modules/react-native-maps'
-  pod 'react-native-google-maps', :path => rn_maps_path
+  # rn_maps_path = '../node_modules/react-native-maps'
+    # pod 'react-native-google-maps', :path => rn_maps_path
+    # pod 'GoogleMaps'
+    # pod 'Google-Maps-iOS-Utils'
+    config = use_native_modules!
 
   use_react_native!(
     :path => config[:reactNativePath],

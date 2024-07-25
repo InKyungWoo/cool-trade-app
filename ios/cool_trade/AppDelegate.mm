@@ -8,7 +8,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"AIzaSyClAHZQaH5mX9MAh_OQmXsNvjurLKae7lc"]; // Google 콘솔에서 얻은 API 키로 교체
+  [GMSServices provideAPIKey:@"AIzaSyBY00RlbhvGFcQI1BcLYVraCc6_9KAswAI"]; // Google 콘솔에서 얻은 API 키로 교체
 
   self.moduleName = @"cool_trade";
   // You can add your custom initial props in the dictionary below.

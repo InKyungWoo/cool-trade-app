@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Geolocation from 'react-native-geolocation-service';
 import { dummyItems } from '../data/dummyItems';
@@ -76,6 +76,7 @@ const AppleMap = () => {
         <View style={styles.container}>
             <MapView
                 ref={mapRef}
+                provider={PROVIDER_GOOGLE}
                 style={styles.map}
                 region={region}
                 onRegionChangeComplete={setRegion}
