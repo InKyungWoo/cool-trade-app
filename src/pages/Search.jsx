@@ -13,6 +13,8 @@ import { siObj, siGuList } from '../data/regionData';
 import DropdownModal from '../components/DropdownModal';
 import BasicHeader from '../components/BasicHeader';
 
+const noResultImg = require('../assets/images/sadLogo.png');
+
 const Search = () => {
     const [selectedSi, setSelectedSi] = useState('전체');
     const [selectedGu, setSelectedGu] = useState('전체');
@@ -86,7 +88,10 @@ const Search = () => {
                     keyExtractor={item => item.id.toString()}
                 />
             ) : (
-                <Text style={styles.noResultText}>해당 지역에 등록된 물품이 없습니다.</Text>
+                <View style={{ alignItems: 'center' }}>
+                    <Image source={noResultImg} style={styles.noResultImg} />
+                    <Text style={styles.noResultText}>해당 지역에 등록된 물품이 없습니다.</Text>
+                </View>
             )}
 
             <DropdownModal
@@ -163,9 +168,14 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: '#666',
     },
+    noResultImg: {
+        width: 100,
+        height: 100,
+        marginTop: 50,
+        marginBottom: 10,
+    },
     noResultText: {
         fontSize: 16,
-        textAlign: 'center',
         marginTop: 20,
         color: '#888',
     },

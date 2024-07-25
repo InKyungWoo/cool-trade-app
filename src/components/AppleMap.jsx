@@ -9,6 +9,7 @@ const { width, height } = Dimensions.get('window');
 const currentLocation = require('../assets/icons/currentLocation.png');
 const zoominIcon = require('../assets/icons/zoomIn.png');
 const zoomOutIcon = require('../assets/icons/zoomOut.png');
+const customPin = require('../assets/icons/customPin.png');
 
 const AppleMap = () => {
     const [region, setRegion] = useState({
@@ -93,8 +94,14 @@ const AppleMap = () => {
                         }}
                         title={item.title}
                         description={item.content}
-                        pinColor="#6C96EA"
-                    />
+                        // pinColor="#5b86dc"
+                    >
+                        <Image
+                            source={customPin}
+                            style={{ width: 40, height: 40 }} // 크기를 원하는 대로 조정하세요
+                            resizeMode="contain"
+                        />
+                    </Marker>
                 ))}
             </MapView>
 
