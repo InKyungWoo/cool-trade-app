@@ -17,10 +17,6 @@ import { calculateDistance } from '../utils/distanceCaculator';
 
 const { width } = Dimensions.get('window');
 
-const formatPrice = price => {
-    return new Intl.NumberFormat('ko-KR').format(price);
-};
-
 const Home = () => {
     const [focusedItem, setFocusedItem] = useState(null);
     const [sortedItems, setSortedItems] = useState([]);
@@ -99,7 +95,7 @@ const Home = () => {
                                             {item.content}
                                         </Text>
                                         <Text style={styles.itemPrice}>
-                                            {formatPrice(item.price)}원
+                                            {item.price.toLocaleString()}원
                                         </Text>
                                     </View>
                                     <Image source={item.images[0]} style={styles.itemImg} />

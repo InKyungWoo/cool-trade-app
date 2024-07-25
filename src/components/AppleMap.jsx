@@ -98,17 +98,17 @@ const AppleMap = () => {
             </MapView>
 
             <View style={styles.buttonContainer}>
+                <View>
+                    <TouchableOpacity onPress={goToCurrentLocation}>
+                        <Image source={currentLocation} style={styles.buttonStyle} />
+                    </TouchableOpacity>
+                </View>
                 <View style={{ gap: 5 }}>
                     <TouchableOpacity onPress={zoomIn}>
                         <Image source={zoominIcon} style={styles.buttonStyle} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={zoomOut}>
                         <Image source={zoomOutIcon} style={styles.buttonStyle} />
-                    </TouchableOpacity>
-                </View>
-                <View>
-                    <TouchableOpacity onPress={goToCurrentLocation}>
-                        <Image source={currentLocation} style={styles.buttonStyle} />
                     </TouchableOpacity>
                 </View>
             </View>
