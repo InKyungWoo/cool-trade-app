@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Dimensions, View, Image, StyleSheet, Platform } from 'react-native';
+import { Dimensions, View, Image, StyleSheet, Platform, PermissionsAndroid } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import { PermissionsAndroid } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const splashImg = require('../assets/images/splash_img.png');
 const { width } = Dimensions.get('window');
@@ -18,25 +18,34 @@ const Splash = ({ navigation }) => {
     const getMyLocation = () => {
         console.log('get My Location =====>');
         Geolocation.getCurrentPosition(
-            position => {
+            async position => {
                 console.log('😀 position =====> ', position);
-                // 상태관리 라이브러리나 Async Storage에 현재 위치 저장하기
-                // coords에 latitude와 longitude가 있음. (위경도)
-                // userStore.setCurrentLocation(position.coords);
-                // 여기서 상태 관리 라이브러리나 Async Storage를 사용하여 위치 저장
-            },
-            error => {
-                console.log('error가 있습니다.', error);
-                // 에러 처리 로직, console로 확인
-                if (error.code === 1) {
-                    console.log('설정에서 위치를 허용해주세요.');
-                } else if (error.code === 5) {
-                    console.log('다시 시도하여 확인을 눌러주세요.');
-                } else {
-                    console.log('다시 시도하여 확인을 눌러주세요.');
+                try {
+                    await AsyncStorage.setItem('userLocation', JSON.stringify(position.coords));
+                } catch (e) {
+                    console.error('Failed to save location to AsyncStorage', e);
                 }
             },
-            { enableHighAccuracy: false, timeout: 2000 },
+            error => {
+                console.log('위치 정보 오류:', error);
+                switch (error.code) {
+                    case 1:
+                        console.log('사용자가 위치 정보 제공을 거부했습니다.');
+                        break;
+                    case 2:
+                        console.log('네트워크 문제로 위치를 찾을 수 없습니다.');
+                        break;
+                    case 3:
+                        console.log('위치 정보를 가져오는 데 시간이 초과되었습니다.');
+                        break;
+                    case 5:
+                        console.log('알 수 없는 오류가 발생했습니다.');
+                        break;
+                    default:
+                        console.log('알 수 없는 오류가 발생했습니다.');
+                }
+            },
+            { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 },
         );
     };
 
