@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Geolocation from 'react-native-geolocation-service';
+import { dummyItems } from '../data/dummyItems';
 
 const { width, height } = Dimensions.get('window');
 const currentLocation = require('../assets/icons/currentLocation.png');
@@ -81,8 +82,21 @@ const AppleMap = () => {
                 showsUserLocation={true}
                 showsMyLocationButton={false}
                 zoomEnabled={true}
-                zoomControlEnabled={true}
-            />
+                zoomControlEnabled={true}>
+                {dummyItems.map(item => (
+                    <Marker
+                        key={item.id}
+                        coordinate={{
+                            latitude: item.location.latitude,
+                            longitude: item.location.longitude,
+                        }}
+                        title={item.title}
+                        description={item.content}
+                        pinColor="#6C96EA"
+                    />
+                ))}
+            </MapView>
+
             <View style={styles.buttonContainer}>
                 <View style={{ gap: 5 }}>
                     <TouchableOpacity onPress={zoomIn}>

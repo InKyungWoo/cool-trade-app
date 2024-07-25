@@ -1,13 +1,13 @@
 const itemImg1 = require('../assets/images/items/bicycle.jpg');
 const itemImg2 = require('../assets/images/items/book.jpg');
-const itemImg3 = require('../assets/images/items/camping.jph');
+const itemImg3 = require('../assets/images/items/camping.jpg');
 const itemImg4 = require('../assets/images/items/desk.jpg');
 const itemImg5 = require('../assets/images/items/healthy.jpg');
 const itemImg6 = require('../assets/images/items/ipad.jpg');
 const itemImg7 = require('../assets/images/items/notebook.jpg');
 const itemImg8 = require('../assets/images/items/phone.jpg');
 const itemImg9 = require('../assets/images/items/piano.jpg');
-const itemImg10 = require('../assets/images/items/tablet.jpg');
+const itemImg10 = require('../assets/images/items/tablet.png');
 
 export const dummyItems = [
     {
@@ -88,7 +88,7 @@ export const dummyItems = [
             longitude: 127.0,
             address: '경기도 수원시',
         },
-        images: [itemImg3, itemImg3, itemImg],
+        images: [itemImg3, itemImg3, itemImg4],
     },
     {
         id: 6,
@@ -200,7 +200,7 @@ export const dummyItems = [
             longitude: 127.1705,
             address: '경기도 성남시 수정구',
         },
-        images: [itemImg7, itemImg],
+        images: [itemImg7, itemImg7],
     },
     {
         id: 13,
